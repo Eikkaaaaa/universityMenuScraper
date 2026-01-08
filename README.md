@@ -7,9 +7,17 @@
 * All the data is fetched from openly available `https://www.karkafeerna.fi` website
 
 * The data can be queried in 2 kind of ways
-  * A normal `REST API` http://localhost:8080/api/v1/meals
+  * A normal `REST API` http://localhost:8080/api/v1/
     * A single `GET` command returns the menus for the current day in JSON form
   * A `Graphql API` http://localhost:8080/graphiql
+
+### REST API info
+
+The `REST API` for the HTTP request can be done:
+* To the root of the address `http://localhost:8080/api/v1/`
+* Or `http://localhost:8080/api/v1/restaurants` to get the data only for the restaurants. This omits:
+  * `updatedAt` time of latest update
+  * `source` the source of the data
 
 ### GraphQL queries
 
