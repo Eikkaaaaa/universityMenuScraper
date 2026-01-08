@@ -16,7 +16,7 @@ public class WebSecurity {
 
         // Deny all traffic besides traffic to the API ang Graphql
         http.authorizeHttpRequests((auth) -> auth
-                .requestMatchers("/api/v1/").permitAll()
+                .requestMatchers("/api/v1/**").permitAll()
                 .requestMatchers("/api/v1/restaurants").permitAll()
                 .requestMatchers("/graphql").permitAll()
                 .requestMatchers("/graphiql").permitAll()

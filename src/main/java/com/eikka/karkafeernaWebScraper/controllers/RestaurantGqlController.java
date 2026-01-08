@@ -4,6 +4,7 @@ import com.eikka.karkafeernaWebScraper.components.Restaurant;
 import com.eikka.karkafeernaWebScraper.service.RestaurantService;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;

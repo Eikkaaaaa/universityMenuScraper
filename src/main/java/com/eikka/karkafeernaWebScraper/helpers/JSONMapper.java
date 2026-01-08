@@ -28,7 +28,7 @@ public class JSONMapper {
     public void createJSONFile() throws IOException {
         Scraper scraper = new Scraper();
         IO.println(GSON.toJson(scraper.allRestaurants()));
-        File file = new File("files/restaurants.json");
+        File file = new File("src/main/resources/data/restaurants.json");
 
         try (FileWriter writer = new FileWriter(file)) {
             writer.write(GSON.toJson(scraper.allRestaurants()));
@@ -36,7 +36,7 @@ public class JSONMapper {
             throw new IOException(e);
         }
 
-        file = new File("files/restaurants_gql.json");
+        file = new File("src/main/resources/data/restaurants_gql.json");
 
         try (FileWriter writer = new FileWriter(file)) {
             writer.write(GSON.toJson(scraper.allRestaurants().getRestaurants()));
@@ -51,7 +51,7 @@ public class JSONMapper {
      * @throws IOException exception if file cannot be read
      */
     public List<Restaurant> allRestaurants() throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader("files/restaurants_gql.json"));
+        BufferedReader br = new BufferedReader(new FileReader("src/main/resources/data/restaurants_gql.json"));
 
         Type restaurantType = new TypeToken<List<Restaurant>>(){}.getType();
         return GSON.fromJson(br, restaurantType);

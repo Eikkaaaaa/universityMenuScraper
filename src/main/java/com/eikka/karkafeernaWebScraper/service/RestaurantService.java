@@ -42,6 +42,15 @@ public class RestaurantService {
     }
 
     public Restaurant restaurantByName(String name) throws IOException {
-        return jsonMapper.allRestaurants().stream().filter(restaurant -> restaurant.getName().equals(name)).findFirst().orElse(null);
+
+        String search;
+
+        if (name.equalsIgnoreCase("karen")) {
+            search = "kåren";
+        } else {
+            search = name;
+        }
+
+        return jsonMapper.allRestaurants().stream().filter(restaurant -> restaurant.getName().equalsIgnoreCase(search)).findFirst().orElse(null);
     }
 }
