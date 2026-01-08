@@ -14,12 +14,10 @@ public class WebSecurity {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) {
 
-        http.cors(AbstractHttpConfigurer::disable);
-
         // Deny all traffic besides traffic to the API ang Graphql
         http.authorizeHttpRequests((auth) -> auth
-                .requestMatchers("/api/v1/meals").permitAll()
-                .requestMatchers("/api/v1/gql").permitAll()
+                .requestMatchers("/api/v1/").permitAll()
+                .requestMatchers("/api/v1/restaurants").permitAll()
                 .requestMatchers("/graphql").permitAll()
                 .requestMatchers("/graphiql").permitAll()
                 .requestMatchers("/**").denyAll());
