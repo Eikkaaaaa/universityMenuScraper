@@ -7,23 +7,41 @@
 * All the data is fetched from openly available `https://www.karkafeerna.fi` website
 
 * The data can be queried in 2 kind of ways
-  * A normal `REST API` http://localhost:8080/api/v1/
+  * A normal `REST API` http://localhost:8080/api/v1/restaurants
     * A single `GET` command returns the menus for the current day in JSON form
   * A `Graphql API` http://localhost:8080/graphiql
 
 ### REST API info
 
-The `REST API` for the HTTP request can be done:
-* To the root of the address `http://localhost:8080/api/v1/`
-* Or `http://localhost:8080/api/v1/restaurants` to get the data only for the restaurants. This omits:
-  * `updatedAt` time of latest update
-  * `source` the source of the data
+The `REST API` for the HTTP requests can be done:
+#### `http://localhost:8080/api/v1/restaurants`
+  * Returns all of the restaurants and their respective info
+  * Contains also:
+    * `updatedAt` timestamp when the data was updated
+    * `source` source of the data
+
+#### `http://localhost:8080/api/v1/formatted` 
+* Get the data only for the restaurants. 
+* This omits timestamp and source
+
+#### `http://localhost:8080/api/v1/restaurants/{restaurant_name}`
+* Returns info for a single restaurant
+* Does not contain timestamps or datasource
+* Capitalization-agnostic, all letters can be upper- or lowercase
+* Restaurants that are available:
+  * `Arken`
+  * `Astra`
+  * `Aurum`
+  * `Aurum Bistro`
+  * `Kåren`
+    * Switch `å -> a` in the URL
+    * `/restaurants/karen`
 
 ### GraphQL queries
 
-The `Graphql API` can be used to query all of the restaurants at the same time, or just a single restaurant. When querying a single restaurant, the restaurants name is used as the parameter, first letter capitalized.
+The `Graphql API` can be used to query all of the restaurants at the same time, or just a single restaurant. When querying a single restaurant, the restaurants name is used as the parameter.
 
-#### All restaurants
+#### All restaurants with all possible parameters
 
 ```graphql
 query all {
@@ -106,7 +124,7 @@ query all {
 ##### To this
 ```graphql
 query all {
-  restaurantByName(name: "<Restaurant-name-here>"){
+  restaurantByName(name: "{Restaurant-name-here}"){
     name
   }
 }
@@ -123,13 +141,7 @@ query all {
 
 ### Future development
 
-* In the future the user should be able to query the API to pick the restaurant they want to get the menu for
-  * Implemented in the `Graphql API`
-  * Not yet in the `REST API`
-
 * Log to get the history of the meals a restaurant has served
-
 * Perhaps also Unica restaurants
-
 * Implement an API key functionality
   * API is free to use but a key has to be made
