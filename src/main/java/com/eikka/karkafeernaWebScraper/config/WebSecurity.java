@@ -1,3 +1,4 @@
+/*
 package com.eikka.karkafeernaWebScraper.config;
 
 import org.springframework.context.annotation.Bean;
@@ -16,7 +17,11 @@ public class WebSecurity {
         // Deny all traffic besides traffic to the API
         http.authorizeHttpRequests((auth) -> auth
                 .requestMatchers("/api/v1/meals").permitAll()
-                .anyRequest().denyAll());
+                .requestMatchers("/api/v1/gql").permitAll()
+                .requestMatchers("/graphql", "/graphiql").permitAll()
+                .requestMatchers("/**").permitAll());
+
         return http.build();
     }
 }
+ */
