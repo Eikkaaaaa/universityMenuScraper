@@ -2,9 +2,9 @@ package com.eikka.karkafeernaWebScraper.components.macros;
 
 public class Macros {
 
-    private MacroTuple<Float, String> energi;
-    private MacroTuple<Float, String> fett;
-    private MacroTuple<Float, String> kolhydrater;
+    private MacroTuple<Float, String> calories;
+    private MacroTuple<Float, String> fat;
+    private MacroTuple<Float, String> carbs;
     private MacroTuple<Float, String> protein;
     private MacroTuple<Float, String> salt;
 
@@ -12,28 +12,28 @@ public class Macros {
 
     }
 
-    public MacroTuple<Float, String> getEnergi() {
-        return energi;
+    public MacroTuple<Float, String> getCalories() {
+        return calories;
     }
 
-    public void setEnergi(MacroTuple<Float, String> energi) {
-        this.energi = energi;
+    public void setCalories(MacroTuple<Float, String> calories) {
+        this.calories = calories;
     }
 
-    public MacroTuple<Float, String> getFett() {
-        return fett;
+    public MacroTuple<Float, String> getFat() {
+        return fat;
     }
 
-    public void setFett(MacroTuple<Float, String> fett) {
-        this.fett = fett;
+    public void setFat(MacroTuple<Float, String> fat) {
+        this.fat = fat;
     }
 
-    public MacroTuple<Float, String> getKolhydrater() {
-        return kolhydrater;
+    public MacroTuple<Float, String> getCarbs() {
+        return carbs;
     }
 
-    public void setKolhydrater(MacroTuple<Float, String> kolhydrater) {
-        this.kolhydrater = kolhydrater;
+    public void setCarbs(MacroTuple<Float, String> carbs) {
+        this.carbs = carbs;
     }
 
     public MacroTuple<Float, String> getProtein() {
@@ -54,14 +54,14 @@ public class Macros {
 
     public void mapMacros(String unit, MacroTuple<Float, String> tuple){
         switch (unit){
-            case "energi":
-                this.energi = tuple;
+            case "energy":
+                this.calories = tuple;
                 break;
-            case "fett":
-                this.fett = tuple;
+            case "fat":
+                this.fat = tuple;
                 break;
-            case "kolhydrater":
-                this.kolhydrater = tuple;
+            case "carbs":
+                this.carbs = tuple;
                 break;
             case "protein":
                 this.protein = tuple;
@@ -75,9 +75,9 @@ public class Macros {
     @Override
     public String toString() {
         return "Macros{" +
-                "energi=" + energi +
-                ", fett=" + fett +
-                ", kolhydrater=" + kolhydrater +
+                "energi=" + calories +
+                ", fett=" + fat +
+                ", kolhydrater=" + carbs +
                 ", protein=" + protein +
                 ", salt=" + salt +
                 '}';

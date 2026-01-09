@@ -33,6 +33,8 @@ The `REST API` for the HTTP requests can be done:
   * `Astra`
   * `Aurum`
   * `Aurum Bistro`
+    * Becomes `Aurum-Bistro`
+    * `/restaurants/Aurum-Bistro`
   * `Kåren`
     * Switch `å -> a` in the URL
     * `/restaurants/karen`
@@ -52,15 +54,15 @@ query all {
       name
       allergens
       macros {
-        energi {
+        calories {
           amount
           quantity
         }
-        fett {
+        fat {
           amount
           quantity
         }
-        kolhydrater {
+        carbs {
           amount
           quantity
         }

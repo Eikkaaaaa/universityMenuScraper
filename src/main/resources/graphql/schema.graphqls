@@ -13,24 +13,24 @@ type FoodItem {
 }
 
 type Macros {
-    energi: Energi
-    fett: Fett
-    kolhydrater: Kolhydrater
+    calories: Calories
+    fat: Fat
+    carbs: Carbs
     protein: Protein
     salt: Salt
 }
 
-type Energi implements Macro{
+type Calories implements Macro{
     amount: Float
     quantity: String
 }
 
-type Fett implements Macro{
+type Fat implements Macro{
     amount: Float
     quantity: String
 }
 
-type Kolhydrater implements Macro{
+type Carbs implements Macro{
     amount: Float
     quantity: String
 }
