@@ -112,14 +112,25 @@
     <ul>
         <li>Returns info for a single restaurant</li>
         <li>Does not contain timestamps or datasource</li>
-        <li>Capitalization-agnostic, all letters can be upper- or lowercase</li>
+        <li>
+            Capitalization-agnostic
+            <ul>
+                <li>All letters can be upper- or lowercase</li>
+            </ul>
+        </li>
         <li>
             Restaurants that are available
             <ul>
                 <li>Arken</li>
                 <li>Astra</li>
                 <li>Aurum</li>
-                <li>Aurum Bistro</li>
+                <li>
+                    Aurum Bistro
+                    <ul>
+                        <li>Write query with "-" instead of space bar</li>
+                        <li>For example: <code>/restaurants/Aurum-Bistro</code></li>
+                    </ul>
+                </li>
                 <li>
                     Kåren
                     <ul>
@@ -150,13 +161,13 @@
             &emsp;&emsp;&emsp;name <br>
             &emsp;&emsp;&emsp;allergens <br>
             &emsp;&emsp;&emsp;macros { <br>
-            &emsp;&emsp;&emsp;&emsp;energi { <br>
+            &emsp;&emsp;&emsp;&emsp;calories { <br>
             &emsp;&emsp;&emsp;&emsp;&emsp;amount <br>
             &emsp;&emsp;&emsp;&emsp;&emsp;quantity <br>
-            &emsp;&emsp;&emsp;&emsp;fett { <br>
+            &emsp;&emsp;&emsp;&emsp;fat { <br>
             &emsp;&emsp;&emsp;&emsp;&emsp;amount <br>
             &emsp;&emsp;&emsp;&emsp;&emsp;quantity <br>
-            &emsp;&emsp;&emsp;&emsp;kolhydrater { <br>
+            &emsp;&emsp;&emsp;&emsp;carbs { <br>
             &emsp;&emsp;&emsp;&emsp;&emsp;amount <br>
             &emsp;&emsp;&emsp;&emsp;&emsp;quantity <br>
             &emsp;&emsp;&emsp;&emsp;protein { <br>

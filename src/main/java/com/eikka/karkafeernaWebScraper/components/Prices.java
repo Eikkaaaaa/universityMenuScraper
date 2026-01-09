@@ -2,58 +2,58 @@ package com.eikka.karkafeernaWebScraper.components;
 
 public class Prices {
 
-    private float studerande;
-    private float forskarstuderande;
-    private float personal;
-    private float andra;
+    private float students;
+    private float researcher_students;
+    private float staff;
+    private float others;
 
     public Prices(){}
 
-    public void setStuderande(float studerande) {
-        this.studerande = studerande;
+    public void setStuderande(float students) {
+        this.students = students;
     }
 
-    public void setForskarstuderande(float forskarstuderande) {
-        this.forskarstuderande = forskarstuderande;
+    public void setForskarstuderande(float researcher_students) {
+        this.researcher_students = researcher_students;
     }
 
-    public void setPersonal(float personal) {
-        this.personal = personal;
+    public void setPersonal(float staff) {
+        this.staff = staff;
     }
 
-    public void setAndra(float andra) {
-        this.andra = andra;
+    public void setAndra(float others) {
+        this.others = others;
     }
 
     public float getStuderande() {
-        return studerande;
+        return students;
     }
 
     public float getForskarstuderande() {
-        return forskarstuderande;
+        return researcher_students;
     }
 
     public float getPersonal() {
-        return personal;
+        return staff;
     }
 
     public float getAndra() {
-        return andra;
+        return others;
     }
 
     public void mapPrices(String clientele, float price){
         switch (clientele){
-            case "studerande":
-                this.studerande = price;
+            case "students":
+                this.students = price;
                 break;
-            case "forskarstuderande":
-                this.forskarstuderande = price;
+            case "researcher_students":
+                this.researcher_students = price;
                 break;
-            case "personal":
-                this.personal = price;
+            case "staff":
+                this.staff = price;
                 break;
-            case "andra":
-                this.andra = price;
+            case "others":
+                this.others = price;
                 break;
         }
     }
@@ -61,10 +61,10 @@ public class Prices {
     @Override
     public String toString() {
         return "Prices{" +
-                "studerande=" + studerande +
-                ", forskarstuderande=" + forskarstuderande +
-                ", personal=" + personal +
-                ", andra=" + andra +
+                "students=" + students +
+                ", researcher_students=" + researcher_students +
+                ", personal=" + staff +
+                ", others=" + others +
                 '}';
     }
 }

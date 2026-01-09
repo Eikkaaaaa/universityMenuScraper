@@ -24,7 +24,7 @@ public class RestaurantService {
 
     public ResponseEntity<Resource> getAllInfo(){
         try {
-            Path filePath = Paths.get("files/restaurants.json");
+            Path filePath = Paths.get("src/main/resources/data/restaurants.json");
             Resource resource = new InputStreamResource(new FileInputStream(filePath.toFile()));
 
             if(!resource.exists()){
@@ -47,9 +47,13 @@ public class RestaurantService {
 
         if (name.equalsIgnoreCase("karen")) {
             search = "kåren";
+        } else if (name.equalsIgnoreCase("aurum-bistro")) {
+            search = "Aurum Bistro";
         } else {
             search = name;
         }
+
+
 
         return jsonMapper.allRestaurants().stream().filter(restaurant -> restaurant.getName().equalsIgnoreCase(search)).findFirst().orElse(null);
     }

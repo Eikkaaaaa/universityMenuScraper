@@ -206,10 +206,14 @@ public class Scraper {
             // Clean string: "Studerande 3,10 " -> "studerande 3,10"
             part = part.trim().toLowerCase();
 
-            String[] parts = part.trim().split(" ");
+            String[] parts = new String[2];
 
-            if (parts[0].equals("forskarstud.")){
-                parts[0] = parts[0].replace(".", "erande");
+            if (part.startsWith("researcher stud")) {
+                List<String> tempList = List.of(part.trim().split(" "));
+                parts[0] = tempList.getFirst() + "_" + tempList.get(1).replace(".", "ents");
+                parts[1] = tempList.get(2);
+            } else {
+                parts = part.trim().split(" ");
             }
 
             // Pick clientele and format the price to a float
@@ -229,9 +233,10 @@ public class Scraper {
      */
     private Document getDoc() {
         try {
-            Document document = Jsoup.connect("https://www.karkafeerna.fi/").get();
-            document.select(".food-star").remove();
-            return document;
+            Document documentSE = Jsoup.connect("https://www.karkafeerna.fi/").get();
+            Document documentEN = Jsoup.connect("https://www.karkafeerna.fi/en/lunch").get();
+            documentEN.select(".food-star").remove();
+            return documentEN;
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
