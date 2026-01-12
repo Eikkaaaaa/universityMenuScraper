@@ -7,9 +7,10 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-public class Extractor {
+public class KarkafeernaExtractor {
 
     /**
      * Helper class to format the macro string to a proper key-value pair hashmap
@@ -107,6 +108,10 @@ public class Extractor {
 
             // Pick clientele and format the price to a float
             String clientele = parts[0];
+
+            if (parts[1].equals("12,00-15,00")){
+                parts[1] = "15,00";
+            }
             float amount = Float.parseFloat(parts[1].replace(",", "."));
 
             // Add price to the Prices object

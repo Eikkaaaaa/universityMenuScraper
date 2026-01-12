@@ -11,13 +11,17 @@ public class AllRestaurants {
 
     private final String source = "https://www.karkafeerna.fi";
 
-    public AllRestaurants(LinkedHashSet<Restaurant> restaurants) {
-        this.restaurants = restaurants;
+    public AllRestaurants() {
+        this.restaurants = new LinkedHashSet<>();
         this.updatedAt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
     }
 
     public void addRestaurant(Restaurant restaurant) {
         restaurants.add(restaurant);
+    }
+
+    public void addRestaurants(LinkedHashSet<Restaurant> restaurants) {
+        this.restaurants.addAll(restaurants);
     }
 
     public LinkedHashSet<Restaurant> getRestaurants() {

@@ -50,6 +50,8 @@ public class RestaurantService {
             default -> name;
         };
 
+        //IO.println(jsonMapper.allRestaurants().stream().filter(restaurant -> restaurant.getName().equalsIgnoreCase(search)).findFirst().orElse(null));
+
         return jsonMapper.allRestaurants().stream().filter(restaurant -> restaurant.getName().equalsIgnoreCase(search)).findFirst().orElse(null);
     }
 }

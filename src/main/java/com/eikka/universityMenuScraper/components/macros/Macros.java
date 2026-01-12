@@ -7,6 +7,7 @@ public class Macros {
     private MacroTuple<Float, String> carbs;
     private MacroTuple<Float, String> protein;
     private MacroTuple<Float, String> salt;
+    private MacroTuple<Float, String> sugar;
 
     public Macros(){
 
@@ -52,6 +53,14 @@ public class Macros {
         this.salt = salt;
     }
 
+    public MacroTuple<Float, String> getSugar() {
+        return sugar;
+    }
+
+    public void setSugar(MacroTuple<Float, String> sugar) {
+        this.sugar = sugar;
+    }
+
     public void mapMacros(String unit, MacroTuple<Float, String> tuple){
         switch (unit){
             case "energy":
@@ -69,17 +78,21 @@ public class Macros {
             case "salt":
                 this.salt = tuple;
                 break;
+            case "sugar":
+                this.sugar = tuple;
+                break;
         }
     }
 
     @Override
     public String toString() {
         return "Macros{" +
-                "energi=" + calories +
-                ", fett=" + fat +
-                ", kolhydrater=" + carbs +
+                "calories=" + calories +
+                ", fat=" + fat +
+                ", carbs=" + carbs +
                 ", protein=" + protein +
                 ", salt=" + salt +
+                ", sugar=" + sugar +
                 '}';
     }
 }

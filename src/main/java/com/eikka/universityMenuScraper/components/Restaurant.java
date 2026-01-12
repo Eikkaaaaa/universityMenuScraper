@@ -5,12 +5,11 @@ import java.util.LinkedHashSet;
 public class Restaurant {
 
     private final String name;
-    private final String openingHours;
+    private String openingHours;
     private final LinkedHashSet<Meal> foodItems = new LinkedHashSet<>();
 
-    public Restaurant(String name, String openingHours) {
+    public Restaurant(String name) {
         this.name = name;
-        this.openingHours = openingHours;
     }
 
     public void addMeal(Meal meal){
@@ -20,6 +19,11 @@ public class Restaurant {
     public String getName() {
         return name;
     }
+
+    public void setOpeningHours(String openingHours) {
+        this.openingHours = openingHours;
+    }
+
     public String getOpeningHours() {
         return openingHours;
     }

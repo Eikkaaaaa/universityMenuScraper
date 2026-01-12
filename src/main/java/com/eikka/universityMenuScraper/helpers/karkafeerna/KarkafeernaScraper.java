@@ -13,27 +13,9 @@ import org.jsoup.select.Elements;
 import java.io.*;
 import java.util.*;
 
-public class Scraper {
+public class KarkafeernaScraper {
 
-    public Scraper() {
-    }
-
-
-    /**
-     * Method to parse the HTML data from Kårkaféernas website
-     * @return {@link AllRestaurants} class that holds the data for restaurants and their respective menus
-     */
-    public AllRestaurants allRestaurants() {
-
-        // Get all Elements containing lunches and restaurant names
-        Elements elements = this.getDoc().select(".row.lunch-item ");
-
-        // Initialise new class to contain each restaurant class
-        AllRestaurants allRestaurants =  new AllRestaurants(new LinkedHashSet<>());
-
-        addRestaurantToList(elements, allRestaurants);
-
-        return allRestaurants;
+    public KarkafeernaScraper() {
     }
 
     /**
@@ -42,11 +24,15 @@ public class Scraper {
      * @param elements Restaurants with meals
      * @param allRestaurants Class to contain all parsed info
      */
-    private void addRestaurantToList(Elements elements, AllRestaurants allRestaurants) {
+    public LinkedHashSet<Restaurant> getAllRestaurants() {
 
         String[] mealSkipList = {
                 "GALLERIET (11-14.30)", "ASTRA DELIGHTS (10.30-14.00)", "BUFFÉ SOLSIDAN (11-14)"
         };
+
+        Elements elements = this.getDoc().select(".row.lunch-item ");
+
+        LinkedHashSet<Restaurant> restaurants = new LinkedHashSet<>();
 
         for (Element element : elements) {
 
@@ -55,7 +41,9 @@ public class Scraper {
 
             String openingHours = getOpeningHours(element);
 
-            Restaurant restaurant = new Restaurant(restaurantName, openingHours);
+            Restaurant restaurant = new Restaurant(restaurantName);
+
+            restaurant.setOpeningHours(openingHours);
 
             // Get all meal items for current restaurant
             Elements meals = element.getElementsByClass("meal");
@@ -73,8 +61,10 @@ public class Scraper {
                 }
             }
 
-            allRestaurants.addRestaurant(restaurant);
+            restaurants.add(restaurant);
         }
+
+        return  restaurants;
     }
 
     /**
@@ -108,14 +98,14 @@ public class Scraper {
         Macros macros = new Macros();
 
         if(meal.getElementsByClass("food").hasAttr("title")){
-            macros = Extractor.extractMacros(meal.getElementsByClass("food").attr("title"));
+            macros = KarkafeernaExtractor.extractMacros(meal.getElementsByClass("food").attr("title"));
         }
 
         // Get the price group of the meal
         String priceGroup = meal.getElementsByClass("group-title").text();
 
         // Get the prices for the meal
-        Prices prices = Extractor.extractAllPrices(meal);
+        Prices prices = KarkafeernaExtractor.extractAllPrices(meal);
 
         // Create a meal object from the fetched meal info
         return new Meal(mealName, new LinkedHashSet<>(allergens), macros, priceGroup, prices);
@@ -127,8 +117,7 @@ public class Scraper {
      */
     private Document getDoc() {
         try {
-            Document documentSE = Jsoup.connect("https://www.karkafeerna.fi/").get();
-            Document documentEN = Jsoup.connect("https://www.karkafeerna.fi/en/lunch").get();
+            Document documentEN = Jsoup.connect("https://www.karkafeerna.fi/en/lunch?year=2026&week=03").get();
             documentEN.select(".food-star").remove();
             return documentEN;
         } catch (IOException ex) {

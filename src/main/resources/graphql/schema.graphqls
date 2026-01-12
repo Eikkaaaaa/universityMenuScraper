@@ -51,10 +51,10 @@ interface Macro {
 }
 
 type Prices {
-    studerande: Float
-    forskarstuderande: Float
-    personal: Float
-    andra: Float
+    students: Float
+    researcher_students: Float
+    staff: Float
+    others: Float
 }
 
 type Price {

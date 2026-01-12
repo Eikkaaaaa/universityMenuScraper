@@ -1,15 +1,19 @@
 package com.eikka.universityMenuScraper.helpers;
 
+import com.eikka.universityMenuScraper.components.AllRestaurants;
 import com.eikka.universityMenuScraper.components.Restaurant;
-import com.eikka.universityMenuScraper.helpers.karkafeerna.Scraper;
+import com.eikka.universityMenuScraper.helpers.karkafeerna.KarkafeernaScraper;
+import com.eikka.universityMenuScraper.helpers.unica.UnicaScraper;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import org.jsoup.select.Elements;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.io.*;
 import java.lang.reflect.Type;
 import java.util.List;
+import java.util.Map;
 
 @Component
 public class JSONMapper {
@@ -20,19 +24,26 @@ public class JSONMapper {
     }
 
     /**
-     * <p>Calls {@link Scraper} daily at 00:15 to fetch updated menus, then updates the JSON file automatically with the updated menu.</p>
+     * <p>Calls {@link KarkafeernaScraper} daily at 00:15 to fetch updated menus, then updates the JSON file automatically with the updated menu.</p>
      * <p>Small delay is to make sure to have updated data</p>
      * <p>Also used for creating an easy-to-read JSON file for graphql, omitting the "updatedAt" and "source" parts</p>
      * @throws IOException IOException if file cannot be written
      */
     @Scheduled(cron = "0 15 0 * * *", zone = "Europe/Helsinki")
     public void createJSONFile() throws IOException {
-        Scraper scraper = new Scraper();
-        IO.println(GSON.toJson(scraper.allRestaurants()));
+        AllRestaurants allRestaurants = new AllRestaurants();
+
+        KarkafeernaScraper karkafeernaScraper = new KarkafeernaScraper();
+        UnicaScraper unicaScraper = new UnicaScraper();
+
+        allRestaurants.addRestaurants(karkafeernaScraper.getAllRestaurants());
+        allRestaurants.addRestaurants(unicaScraper.getAllRestaurants());
+
+        IO.println(GSON.toJson(allRestaurants));
         File file = new File("src/main/resources/data/restaurants.json");
 
         try (FileWriter writer = new FileWriter(file)) {
-            writer.write(GSON.toJson(scraper.allRestaurants()));
+            writer.write(GSON.toJson(allRestaurants));
         } catch (IOException e) {
             throw new IOException(e);
         }
@@ -40,7 +51,7 @@ public class JSONMapper {
         file = new File("src/main/resources/data/restaurants_gql.json");
 
         try (FileWriter writer = new FileWriter(file)) {
-            writer.write(GSON.toJson(scraper.allRestaurants().getRestaurants()));
+            writer.write(GSON.toJson(allRestaurants.getRestaurants()));
         } catch (IOException e) {
             throw new IOException(e);
         }
@@ -56,5 +67,15 @@ public class JSONMapper {
 
         Type restaurantType = new TypeToken<List<Restaurant>>(){}.getType();
         return GSON.fromJson(br, restaurantType);
+    }
+
+    static void main() {
+        UnicaScraper unicaScraper = new UnicaScraper();
+
+        IO.println("Is scraping done: " + unicaScraper.isScrapingDone);
+
+        unicaScraper.getAllRestaurants();
+
+        IO.println("Is scraping done: " + unicaScraper.isScrapingDone);
     }
 }
