@@ -9,35 +9,42 @@ public class Prices {
 
     public Prices(){}
 
-    public void setStuderande(float students) {
+    public Prices(Prices prices){
+        this.students = prices.getStudents();
+        this.researcher_students = prices.getResearcherStudents();
+        this.staff = prices.getStaff();
+        this.others = prices.getOthers();
+    }
+
+    public void setStudents(float students) {
         this.students = students;
     }
 
-    public void setForskarstuderande(float researcher_students) {
+    public void setResearcherStudents(float researcher_students) {
         this.researcher_students = researcher_students;
     }
 
-    public void setPersonal(float staff) {
+    public void setStaff(float staff) {
         this.staff = staff;
     }
 
-    public void setAndra(float others) {
+    public void setOthers(float others) {
         this.others = others;
     }
 
-    public float getStuderande() {
+    public float getStudents() {
         return students;
     }
 
-    public float getForskarstuderande() {
+    public float getResearcherStudents() {
         return researcher_students;
     }
 
-    public float getPersonal() {
+    public float getStaff() {
         return staff;
     }
 
-    public float getAndra() {
+    public float getOthers() {
         return others;
     }
 

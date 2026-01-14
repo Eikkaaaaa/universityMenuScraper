@@ -12,7 +12,7 @@
 	<artifactId>universityMenuScraper</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>universityMenuScraper</name>
-	<description>Web scraper to produce a JSON file from the Kårkaféerna website</description>
+	<description>Web karkafeernaScraper to produce a JSON file from the Kårkaféerna website</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -29,6 +29,7 @@
 	<properties>
 		<java.version>25</java.version>
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -88,6 +89,11 @@
 			<groupId>io.projectreactor</groupId>
 			<artifactId>reactor-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>${selenium.version}</version>
 		</dependency>
 	</dependencies>
 

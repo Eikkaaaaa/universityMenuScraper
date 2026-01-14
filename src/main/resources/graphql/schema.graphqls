@@ -45,16 +45,21 @@ type Salt implements Macro{
     quantity: String
 }
 
+type Sugar implements Macro{
+    amount: Float
+    quantity: String
+}
+
 interface Macro {
     amount: Float
     quantity: String
 }
 
 type Prices {
-    studerande: Float
-    forskarstuderande: Float
-    personal: Float
-    andra: Float
+    students: Float
+    researcher_students: Float
+    staff: Float
+    others: Float
 }
 
 type Price {
